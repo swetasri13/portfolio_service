@@ -12,7 +12,7 @@
 	<artifactId>mdb-spring-boot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>mdb-spring-boot</name>
-	<description>Spring boot mongodb</description>
+	<description>Spring boot </description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -24,6 +24,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
 		</dependency>
 
 		<dependency>
@@ -40,6 +45,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>portfolioService</finalName>
 	</build>
 
 </project>

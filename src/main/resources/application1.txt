@@ -1,0 +1,6 @@
+spring:
+  data:
+    mongodb:
+      database: "cart"
+      host: cluster0.fgigdzs.mongodb.net
+      port: 27017
