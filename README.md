@@ -6,7 +6,7 @@ First run mongodb docker and the start spring boot appplication.
 
 steps to run mongo db docker.(you need docker desktop for it)
 
-run below command from command prompt
-docker pull mongo:latest
-docker run -d -p 27017:27017 --name portfoliodb mongo:latest
-docker ps  -- to check whether its running or not
+1) run below command from command prompt
+2) docker pull mongo:latest
+3) docker run -d -p 27017:27017 --name portfoliodb mongo:latest
+4) docker ps  -- to check whether its running or not
