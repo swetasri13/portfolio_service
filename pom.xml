@@ -8,10 +8,10 @@
 		<version>2.5.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>mdb-spring-boot</artifactId>
+	<groupId>com.po</groupId>
+	<artifactId>portfolio</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>mdb-spring-boot</name>
+	<name>portfolio-service</name>
 	<description>Spring boot </description>
 	<properties>
 		<java.version>1.8</java.version>

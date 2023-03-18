@@ -1,6 +1,5 @@
-package com.example.mdbspringboot.model;
+package com.po.optimizer.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;

@@ -1,4 +1,4 @@
-package com.example.mdbspringboot;
+package com.po.optimizer;
 
 
 import java.util.ArrayList;
@@ -10,13 +10,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-import com.example.mdbspringboot.model.GroceryItem;
-import com.example.mdbspringboot.repository.CustomItemRepository;
-import com.example.mdbspringboot.repository.ItemRepository;
+import com.po.optimizer.model.GroceryItem;
+import com.po.optimizer.repository.CustomItemRepository;
+import com.po.optimizer.repository.ItemRepository;
 
 @SpringBootApplication
 @EnableMongoRepositories
-public class MdbSpringBootApplication implements CommandLineRunner{
+public class PortfolioOptimizationApplication implements CommandLineRunner{
 	
 	@Autowired
 	ItemRepository groceryItemRepo;
@@ -27,7 +27,7 @@ public class MdbSpringBootApplication implements CommandLineRunner{
 	List<GroceryItem> itemList = new ArrayList<GroceryItem>();
 
 	public static void main(String[] args) {
-		SpringApplication.run(MdbSpringBootApplication.class, args);
+		SpringApplication.run(PortfolioOptimizationApplication.class, args);
 	}
 	
 	public void run(String... args) {

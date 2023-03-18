@@ -1,4 +1,4 @@
-package com.example.mdbspringboot.repository;
+package com.po.optimizer.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Component;
 
-import com.example.mdbspringboot.model.GroceryItem;
+import com.po.optimizer.model.GroceryItem;
 import com.mongodb.client.result.UpdateResult;
 
 @Component

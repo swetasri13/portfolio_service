@@ -1,4 +1,4 @@
-package com.example.mdbspringboot.repository;
+package com.po.optimizer.repository;
 
 public interface CustomItemRepository {
 	

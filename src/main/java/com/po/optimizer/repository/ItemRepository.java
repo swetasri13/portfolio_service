@@ -1,11 +1,11 @@
-package com.example.mdbspringboot.repository;
+package com.po.optimizer.repository;
 
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
-import com.example.mdbspringboot.model.GroceryItem;
+import com.po.optimizer.model.GroceryItem;
 
 public interface ItemRepository extends MongoRepository<GroceryItem, String> {
 	
