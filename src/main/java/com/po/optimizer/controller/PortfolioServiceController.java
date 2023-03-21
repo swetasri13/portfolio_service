@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/")
@@ -41,6 +41,32 @@ public class PortfolioServiceController {
     {
         List<SnPConstituentData> data = repository.findAll();
         return data;
+    }
+
+    @RequestMapping(value="/getSectorsAndMarketCap", method = RequestMethod.GET)
+    public @ResponseBody Map<String,Set<String>> getSectorsAndMarketCap()
+    {
+        List<SnPConstituentData> data = repository.findAll();
+        Map<String,Set<String>> sectorAndMakretCapData = new HashMap<>();
+        Set<String> sectors = new HashSet<String>();
+        Set<String> marketCapSet = new HashSet<String>();
+
+        if(data!=null && !data.isEmpty()) {
+            data.stream().forEach(snpConstituentData -> sectors.add(snpConstituentData.getSector()));
+            data.stream().forEach(snpConstituentData -> marketCapSet.add(snpConstituentData.getMarket_Cap()));
+        }
+        //System.out.println(sectors);
+        sectorAndMakretCapData.put("Sectors",sectors);
+        sectorAndMakretCapData.put("MarketCap",marketCapSet);
+        return sectorAndMakretCapData;
+    }
+    @RequestMapping(value="/getMarketCap", method = RequestMethod.GET)
+    public @ResponseBody Set<String> getMarketCap()
+    {
+       /* List<SnPConstituentData> data = repository.findAll();
+        (data!=null && !data.isEmpty())
+            data.stream().forEach(snpConstituentData -> marketCapSet.add(snpConstituentData.getMarket_Cap()));*/
+        return null;
     }
 
     @RequestMapping(value="/getSPDataBySectorMktCap", method = RequestMethod.GET)
