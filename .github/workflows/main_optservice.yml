@@ -47,7 +47,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'optservice'
+          app-name: 'optservice1'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0D17F1C7C1D7483A814AB27ED7AC78F5 }}
           package: '*.jar'
