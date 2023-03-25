@@ -128,6 +128,11 @@ public class PortfolioServiceController {
         LOGGER.info("Calling getOptimizedSummary");
         return optSummaryRepository.getOptimizersummarysByRunid(runId);
     }
-
+    @GetMapping("/getMessage")
+    @ResponseBody
+    public String getMessage() {
+        LOGGER.info("Calling getMessage");
+        return "App is up";
+    }
 
 }
