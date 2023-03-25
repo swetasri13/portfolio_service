@@ -1,7 +1,14 @@
 package com.po.optimizer.controller;
 
+import com.po.optimizer.model.Optimizersummary;
+import com.po.optimizer.model.RunIdDetails;
 import com.po.optimizer.model.SnPConstituentData;
+import com.po.optimizer.repository.OptimizersummaryRepository;
+import com.po.optimizer.repository.RunIdDetailsRepository;
 import com.po.optimizer.repository.SPDataRepository;
+import com.po.optimizer.service.SubmitOptimizer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +21,13 @@ public class PortfolioServiceController {
 
 
     private SPDataRepository repository;
+    @Autowired
+    private RunIdDetailsRepository runIdDetailsRepository;
+    @Autowired
+    private OptimizersummaryRepository optSummaryRepository;
+    @Autowired
+    private SubmitOptimizer opt;
+    private static final Logger LOGGER = LoggerFactory.getLogger(PortfolioServiceController.class);
 
     @Autowired
     public PortfolioServiceController(SPDataRepository repository) {
@@ -55,20 +69,15 @@ public class PortfolioServiceController {
             data.stream().forEach(snpConstituentData -> sectors.add(snpConstituentData.getSector()));
             data.stream().forEach(snpConstituentData -> marketCapSet.add(snpConstituentData.getMarket_Cap()));
         }
+        Set<String> models = new HashSet<String>();
+        models.add("Monte Carlo"); models.add("SLSQP");
         //System.out.println(sectors);
         sectorAndMakretCapData.put("Sectors",sectors);
         sectorAndMakretCapData.put("MarketCap",marketCapSet);
+        sectorAndMakretCapData.put("Models",models);
+
         return sectorAndMakretCapData;
     }
-    @RequestMapping(value="/getMarketCap", method = RequestMethod.GET)
-    public @ResponseBody Set<String> getMarketCap()
-    {
-       /* List<SnPConstituentData> data = repository.findAll();
-        (data!=null && !data.isEmpty())
-            data.stream().forEach(snpConstituentData -> marketCapSet.add(snpConstituentData.getMarket_Cap()));*/
-        return null;
-    }
-
     @RequestMapping(value="/getSPDataBySectorMktCap", method = RequestMethod.GET)
     public @ResponseBody List<SnPConstituentData> getSPDataBySectorMktCap(@RequestParam("sector") String sector,
                                                                           @RequestParam("marketCap") String marketCap)
@@ -76,5 +85,49 @@ public class PortfolioServiceController {
         List<SnPConstituentData> data = repository.findAllBy(sector,marketCap);
         return data;
     }
+    @PostMapping ("/optimize")
+    @ResponseBody
+    public String submitOptimzation(@RequestBody RunIdDetails runInfo) {
+        //long runId = 0;
+        //first time comment this line
+        long runId=runIdDetailsRepository.count();
+        runInfo.setRunId(++runId);
+        runIdDetailsRepository.save(runInfo);
+        //opt.sendMessage(runId);
+        LOGGER.info("Calling service to submit message");
+        return ("Successfully submitted Message");
+    }
+
+    @GetMapping("/getRunDetails")
+    @ResponseBody
+    public RunIdDetails getRunDetails(long runId) {
+        LOGGER.info("Calling getRunDetails");
+        return runIdDetailsRepository.findItemByRunId(runId);
+       }
+
+    @GetMapping("/getRunDetailsByName")
+    @ResponseBody
+    public List<RunIdDetails> getRunDetailsByName(String name) {
+        LOGGER.info("Calling getRunDetailsByName");
+        return runIdDetailsRepository.findItemByName(name);
+    }
+
+    @GetMapping("/getRunStatus")
+    @ResponseBody
+    public String getRunStatus(long runId) {
+        LOGGER.info("Calling getRunStatus");
+        RunIdDetails runDtls= runIdDetailsRepository.findItemByRunId(runId);
+        if(runDtls != null)
+            return runDtls.getStatus();
+        else
+          return  "Status not found for Run Id"+runId;
+    }
+    @GetMapping("/getOptimizedSummary")
+    @ResponseBody
+    public Optimizersummary getOptimizedSummary(long runId) {
+        LOGGER.info("Calling getOptimizedSummary");
+        return optSummaryRepository.getOptimizersummarysByRunid(runId);
+    }
+
 
 }

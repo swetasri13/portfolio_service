@@ -6,9 +6,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class RunIdDetails {
     private String id;
     private Long runId;
+    private String name;
     private String sectors;
     private String marketCap;
     private String selectedStocks;
+    private String modelName;
+    private String startDate;
+    private String endDate;
+    private String status;
 
     public String getId() {
         return id;
@@ -46,7 +51,47 @@ public class RunIdDetails {
         return selectedStocks;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setSelectedStocks(String selectedStocks) {
         this.selectedStocks = selectedStocks;
+    }
+
+    public String getModelName() {
+        return modelName;
+    }
+
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
