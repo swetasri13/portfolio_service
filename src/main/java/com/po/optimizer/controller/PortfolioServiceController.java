@@ -93,8 +93,8 @@ public class PortfolioServiceController {
         long runId=runIdDetailsRepository.count();
         runInfo.setRunId(++runId);
         runIdDetailsRepository.save(runInfo);
-        //opt.sendMessage(runId);
         LOGGER.info("Calling service to submit message");
+        //opt.sendMessage(runId);
         return ("Successfully submitted Message");
     }
 
